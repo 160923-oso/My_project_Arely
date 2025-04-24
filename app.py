@@ -38,21 +38,19 @@ if scatter_button: # al hacer clic en el botón del gráfico de dispersión
     # mostrar un gráfico Plotly interactivo
   st.plotly_chart(fig_scatter, use_container_width=True) #aqui va la otra grafica
 
-st.header('Histograma de anuncios de Año del modelos con su condicion')
+st.header('Histograma de anuncios del Año de los modelos y su condicion')
 st.write('Creación de un histograma para el conjunto de datos de anuncios de los modelos de coches y su condicion')
 show_histogram = st.checkbox('Mostrar histograma modelos de coches')
 if show_histogram:
-    fig_hist = px.histogram(car_data, x="model_year", color="condition")
-    st.plotly_chart(fig_hist, use_container_width=True)
+   fig_hist = px.histogram(car_data, x="model_year", color="condition")
+   st.plotly_chart(fig_hist, use_container_width=True)
 
-st.header('Grafica de dispersion los condiciones de los coches')
-st.write('Creación de un gráfico de dispersión para el conjunto de datos de venta de coches segun el tipo de coche')
-show_scatter = st.checkbox('Mostrar gráfico de dispersión Condiciones de los carros de venta')
+st.header('Grafica de dispersion las condiciones de los coches')
+st.write('Creación de un gráfico de dispersión para el conjunto de datos de venta de coches segun el tipo')
+show_scatter = st.checkbox('Mostrar gráfico de dispersión de las Condiciones de los coches de venta')
 if show_scatter:
-    st.header('Grafica de dispersion los condiciones de los coches')
-    st.write('Creación de un gráfico de dispersión para el conjunto de datos de venta de coches segun el tipo de coche')
-    fig_scatter = px.scatter(car_data, x="condition", y="price" , color="condition")
-    st.plotly_chart(fig_scatter, use_container_width=True)
+   fig_scatter = px.scatter(car_data, x="condition", y="price" , color="condition")
+   st.plotly_chart(fig_scatter, use_container_width=True)
 
 
 # --- Crear la gráfica circular ---
@@ -82,7 +80,7 @@ def create_pie_chart(data):
     return fig
 
 # Mostrar la gráfica usando Streamlit
-st.header('Gráfica Circular de Tipos de Coches')
+st.header('Gráfica Circular de los Tipos de Coches')
 st.write('Esta gráfica muestra la distribución de los diferentes tipos de coches en el conjunto de datos.')
 
 type_counts = car_data['type'].value_counts().reset_index()
