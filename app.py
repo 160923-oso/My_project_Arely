@@ -7,7 +7,11 @@ st.header('Datos de anuncios de venta de coches')
 st.write('En este proyecto, te proporcionamos un conjunto de datos de anuncios de venta de coches.')
 
 car_data = pd.read_csv('vehicles_us.csv') # leer los datos
+
+st.header('Data Viewer con st.dataframe()')
+st.write('A continuación, se muestra un data viewer interactivo del conjunto de datos:')
 st.dataframe(car_data)
+
 hist_button = st.button('Histograma venta') # crear un botón
 scatter_button = st.button('Gráfico de dispersión ventas') # crear otro botón
 show_histogram = st.checkbox('Mostrar histograma modelos de coches')
@@ -53,12 +57,22 @@ if show_scatter:
     fig_scatter = px.scatter(car_data, x="condition", y="price" , color="condition")
     st.plotly_chart(fig_scatter, use_container_width=True)
     # --- Crear la gráfica circular ---
+
+
+if show_pie_chart:
+    st.header('Gráfica Circular de Tipos de Coche')
+    st.write('Esta gráfica muestra la distribución de los diferentes tipos de coches en el conjunto de datos.')
+    pie_chart = create_pie_chart(type_counts)
+    st.plotly_chart(pie_chart, use_container_width=True)
+else:
+    st.write("Selecciona la casilla para ver la gráfica circular.")
+
 def create_pie_chart(data):
     """
     Crea una gráfica circular interactiva que muestra la distribución de los tipos de coches.
 
     Args:
-         data (pd.DataFrame): Un DataFrame con columnas 'type' y 'count'.
+        data (pd.DataFrame): Un DataFrame con columnas 'type' y 'count'.
 
     Returns:
         plotly.graph_objects.Figure: Una figura de Plotly que representa la gráfica circular.
@@ -77,15 +91,3 @@ def create_pie_chart(data):
         textinfo='percent+label',  # Mostrar porcentaje y etiqueta en las porciones
     )
     return fig
-
-# Mostrar la gráfica usando Streamlit
-st.header('Gráfica Circular de Tipos de Coche')
-st.write('Esta gráfica muestra la distribución de los diferentes tipos de coches en el conjunto de datos.')
-
-show_pie_chart = st.checkbox("Mostrar Gráfica Circular tipos de carros")
-
-if show_pie_chart:
-    pie_chart = create_pie_chart(type_counts)
-    st.plotly_chart(pie_chart, use_container_width=True)
-else:
-    st.write("Selecciona la casilla para ver la gráfica circular.")
