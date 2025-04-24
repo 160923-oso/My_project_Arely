@@ -12,7 +12,7 @@ st.header('Data Viewer con st.dataframe()')
 st.write('A continuación, se muestra un data viewer interactivo del conjunto de datos:')
 st.dataframe(car_data)
 
-st.write('El conjunto de datos contiene informacion sobre anuncios de ventas de coches, incluyendo el precio, el modelo, el ño del modelo, el kilometraje, la condicion y el tipo de coche.')
+st.write('El conjunto de datos contiene informacion sobre anuncios de ventas de coches, incluyendo el precio, el modelo, el año del modelo, el kilometraje, la condicion y el tipo de coche.')
 
 st.header('Histograma de anuncios de venta de coches')
 st.write('Creación de un histograma para el conjunto de datos de anuncios de venta de coches')
