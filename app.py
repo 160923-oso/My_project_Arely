@@ -43,7 +43,7 @@ if show_histogram:
     st.plotly_chart(fig_hist, use_container_width=True)
 
 if show_scatter:
-    st.header('Grafica de dispersion MODELO VS TIPO')
-    st.write('Creación de un gráfico de dispersión para el conjunto de datos de venta de coches segun el modelo junto con el tipo')
-    fig_scatter = px.scatter(car_data, x="model", y="type" , color="model")
+    st.header('Grafica de dispersion los TIPOS de coches')
+    st.write('Creación de un gráfico de dispersión para el conjunto de datos de venta de coches segun el tipo de coche')
+    fig_scatter = px.scatter(car_data, x="type", y="price" , color="type")
     st.plotly_chart(fig_scatter, use_container_width=True)
