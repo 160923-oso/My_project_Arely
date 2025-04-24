@@ -12,51 +12,48 @@ st.header('Data Viewer con st.dataframe()')
 st.write('A continuación, se muestra un data viewer interactivo del conjunto de datos:')
 st.dataframe(car_data)
 
+st.write('El conjunto de datos contiene informacion sobre anuncios de ventas de coches, incluyendo el precio, el modelo, el ño del modelo, el kilometraje, la condicion y el tipo de coche.')
+
+st.header('Histograma de anuncios de venta de coches')
+st.write('Creación de un histograma para el conjunto de datos de anuncios de venta de coches')
+
 hist_button = st.button('Histograma venta') # crear un botón
-scatter_button = st.button('Gráfico de dispersión ventas') # crear otro botón
-show_histogram = st.checkbox('Mostrar histograma modelos de coches')
-show_scatter = st.checkbox('Mostrar gráfico de dispersión Condiciones de los carros de venta')
-# Contar la frecuencia de cada tipo de coche
-type_counts = car_data['type'].value_counts().reset_index()
-type_counts.columns = ['type', 'count']  # Renombrar las columnas para mayor claridad
-show_pie_chart = st.checkbox("Mostrar Gráfica Circular tipos de carros")
-
-if hist_button: # al hacer clic en el botón
-
-  st.header('Histograma de anuncios de venta de coches')
-
-  st.write('Creación de un histograma para el conjunto de datos de anuncios de venta de coches')
-            
+if hist_button: # al hacer clic en el botón         
     # crear un histograma
   fig = px.histogram(car_data, x="odometer", color="model")
         
     # mostrar un gráfico Plotly interactivo
   st.plotly_chart(fig, use_container_width=True)
 
+
+st.header('Grafica de dispersion de anuncios de venta de coches MODELO VS PRECIO')
+
+st.write('Creación de un gráfico de dispersión para el conjunto de datos de anuncios de venta de coches de acuerdo al modelo y precio')
+
+scatter_button = st.button('Gráfico de dispersión ventas') # crear otro botón
 if scatter_button: # al hacer clic en el botón del gráfico de dispersión
-    # escribir un mensaje
-  st.header('Grafica de dispersion de anuncios de venta de coches MODELO VS PRECIO')
-
-  st.write('Creación de un gráfico de dispersión para el conjunto de datos de anuncios de venta de coches de acuerdo al modelo y precio')
-
     # crear un gráfico de dispersión
   fig_scatter = px.scatter(car_data, x="model", y="price", color="model")
 
     # mostrar un gráfico Plotly interactivo
   st.plotly_chart(fig_scatter, use_container_width=True) #aqui va la otra grafica
 
+st.header('Histograma de anuncios de Año del modelos con su condicion')
+st.write('Creación de un histograma para el conjunto de datos de anuncios de los modelos de coches y su condicion')
+show_histogram = st.checkbox('Mostrar histograma modelos de coches')
 if show_histogram:
-    st.header('Histograma de anuncios de Año del modelos con su condicion')
-    st.write('Creación de un histograma para el conjunto de datos de anuncios de los modelos de coches y su condicion')
     fig_hist = px.histogram(car_data, x="model_year", color="condition")
     st.plotly_chart(fig_hist, use_container_width=True)
 
+st.header('Grafica de dispersion los condiciones de los coches')
+st.write('Creación de un gráfico de dispersión para el conjunto de datos de venta de coches segun el tipo de coche')
+show_scatter = st.checkbox('Mostrar gráfico de dispersión Condiciones de los carros de venta')
 if show_scatter:
     st.header('Grafica de dispersion los condiciones de los coches')
     st.write('Creación de un gráfico de dispersión para el conjunto de datos de venta de coches segun el tipo de coche')
     fig_scatter = px.scatter(car_data, x="condition", y="price" , color="condition")
     st.plotly_chart(fig_scatter, use_container_width=True)
-    # --- Crear la gráfica circular ---
+
 
 # --- Crear la gráfica circular ---
 def create_pie_chart(data):
@@ -85,9 +82,11 @@ def create_pie_chart(data):
     return fig
 
 # Mostrar la gráfica usando Streamlit
-st.header('Gráfica Circular de Tipos de Coche')
+st.header('Gráfica Circular de Tipos de Coches')
 st.write('Esta gráfica muestra la distribución de los diferentes tipos de coches en el conjunto de datos.')
 
+type_counts = car_data['type'].value_counts().reset_index()
+type_counts.columns = ['type', 'count']  # Renombrar las columnas para mayor claridad
 # Agregar una casilla de verificación para controlar la visualización de la gráfica
 show_pie_chart = st.checkbox("Mostrar Gráfica Circular")
 
