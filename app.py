@@ -19,7 +19,7 @@ if hist_button: # al hacer clic en el botón
   st.write('Creación de un histograma para el conjunto de datos de anuncios de venta de coches')
             
     # crear un histograma
-  fig = px.histogram(car_data, x="odometer")
+  fig = px.histogram(car_data, x="odometer", color="model")
         
     # mostrar un gráfico Plotly interactivo
   st.plotly_chart(fig, use_container_width=True)
@@ -31,7 +31,7 @@ if scatter_button: # al hacer clic en el botón del gráfico de dispersión
   st.write('Creación de un gráfico de dispersión para el conjunto de datos de anuncios de venta de coches')
 
     # crear un gráfico de dispersión
-  fig_scatter = px.scatter(car_data, x="odometer", y="price")
+  fig_scatter = px.scatter(car_data, x="odometer", y="price", color="model")
 
     # mostrar un gráfico Plotly interactivo
   st.plotly_chart(fig_scatter, use_container_width=True) #aqui va la otra grafica
@@ -45,5 +45,5 @@ if show_histogram:
 if show_scatter:
     st.header('Grafica de dispersion para el conjunto de datos de venta de coches segun el modelo')
     st.write('Creación de un gráfico de dispersión para el conjunto de datos de venta de coches segun el modelo')
-    fig_scatter = px.scatter(car_data, x="model", y="price")
+    fig_scatter = px.scatter(car_data, x="model", y="price" , color="model")
     st.plotly_chart(fig_scatter, use_container_width=True)
