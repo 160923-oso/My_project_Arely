@@ -58,15 +58,7 @@ if show_scatter:
     st.plotly_chart(fig_scatter, use_container_width=True)
     # --- Crear la gráfica circular ---
 
-
-if show_pie_chart:
-    st.header('Gráfica Circular de Tipos de Coche')
-    st.write('Esta gráfica muestra la distribución de los diferentes tipos de coches en el conjunto de datos.')
-    pie_chart = create_pie_chart(type_counts)
-    st.plotly_chart(pie_chart, use_container_width=True)
-else:
-    st.write("Selecciona la casilla para ver la gráfica circular.")
-
+# --- Crear la gráfica circular ---
 def create_pie_chart(data):
     """
     Crea una gráfica circular interactiva que muestra la distribución de los tipos de coches.
@@ -91,3 +83,16 @@ def create_pie_chart(data):
         textinfo='percent+label',  # Mostrar porcentaje y etiqueta en las porciones
     )
     return fig
+
+# Mostrar la gráfica usando Streamlit
+st.header('Gráfica Circular de Tipos de Coche')
+st.write('Esta gráfica muestra la distribución de los diferentes tipos de coches en el conjunto de datos.')
+
+# Agregar una casilla de verificación para controlar la visualización de la gráfica
+show_pie_chart = st.checkbox("Mostrar Gráfica Circular")
+
+if show_pie_chart:
+    pie_chart = create_pie_chart(type_counts)
+    st.plotly_chart(pie_chart, use_container_width=True)
+else:
+    st.write("Selecciona la casilla para ver la gráfica circular.")
